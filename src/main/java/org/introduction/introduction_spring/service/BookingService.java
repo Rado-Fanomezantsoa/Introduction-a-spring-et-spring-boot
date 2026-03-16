@@ -1,7 +1,9 @@
 package org.introduction.introduction_spring.service;
 
 import org.introduction.introduction_spring.entity.Reservation;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,6 +27,15 @@ public class BookingService {
     }
 
     public void addReservation(Reservation reservation) {
+        int numero = reservation.getNumeroChambre();
+
+        if (numero < 1 || numero > 9) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Les numéros de chambres sont compris entre 1 et 9 uniquement."
+            );
+        }
+
         reservations.add(reservation);
     }
 }
