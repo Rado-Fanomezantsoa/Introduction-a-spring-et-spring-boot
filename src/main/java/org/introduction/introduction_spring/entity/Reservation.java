@@ -26,7 +26,7 @@ public class Reservation {
 
     private String descriptionChambre;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @FutureOrPresent(message = "La date ne peut pas être dans le passé")
     private LocalDate dateReservation;
 }
